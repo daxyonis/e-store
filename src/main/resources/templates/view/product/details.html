@@ -1,0 +1,39 @@
+<html lang="en"	
+	xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+	<title>Product Detail</title>
+	<link rel="stylesheet" href="/css/prodDetail.css" />		
+</head>
+<body>
+
+	<div class="container" layout:fragment="content">
+		<h1>Product Detail</h1>
+		<h3 th:text="'Product ' + ${prod.label}">Product #C-34343</h3>
+
+		<div class="prodDetail">
+			<div class="row">
+				<div class="col-md-5">Location</div>
+				<div class="col-md-5">Montreal, Quebec</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">Category</div>
+				<div class="col-md-5">House</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">Description</div>
+				<div class="col-md-5">Lorem ipsum blabalb balbalbl.</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">Date Sale Opened</div>
+				<div class="col-md-5">20/MAY/2016</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">Price</div>
+				<div class="col-md-5">809.000,00 $USD</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.emaciejko.domain.Product;
@@ -30,5 +31,12 @@ public class MainController {
 	List<Product> prodList = prodService.findAll();
 	model.addAttribute("prodList", prodList);
 	return "/view/product/list";
+    }
+    
+    @RequestMapping("/products/{id}")
+    public String details(@PathVariable int id, Model model){
+	Product prod = prodService.findOne(id);
+	model.addAttribute("prod", prod);
+	return "/view/product/details";
     }
 }

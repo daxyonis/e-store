@@ -25,6 +25,16 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	return productList;
     }
+
+    @Override
+    public Product findById(int id) {
+	if(id >= 0 && id < productList.size()){
+	    return productList.get(id);
+	}
+	else{
+	    return null;
+	}
+    }
     
     
 }

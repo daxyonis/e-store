@@ -7,5 +7,7 @@ import com.emaciejko.domain.Product;
 public interface ProductDAO {
     
     public List<Product> findAll();
+    
+    public Product findById(int id);
 
 }
