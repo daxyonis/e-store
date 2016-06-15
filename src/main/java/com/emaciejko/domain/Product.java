@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Product {
     
 //    @Id @GeneratedValue
-//    Long id;
+    private Long id;
     
     private String label;
     private String category;
@@ -38,6 +38,12 @@ public class Product {
 	this.dateSaleOpen = LocalDate.now();
     }
 
+    public Long getId(){
+	return this.id;
+    }
+    public void setId(Long id){
+	this.id = id;
+    }
     public String getLabel() {
         return label;
     }

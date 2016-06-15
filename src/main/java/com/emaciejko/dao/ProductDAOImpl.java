@@ -21,8 +21,8 @@ public class ProductDAOImpl implements ProductDAO {
 				      "California");
 	
 	product.setDescription("Magnificient condo sea overview");
-	productList.add(product);
-	
+	product.setId((long) productList.size());
+	productList.add(product);	
 	return productList;
     }
 
