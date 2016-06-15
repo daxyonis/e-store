@@ -10,33 +10,33 @@
 
 	<div class="container" layout:fragment="content">
 		<h1>Product Detail</h1>
-		<h3 th:text="'Rental # ' + ${prod.label}">Rental #C-34343</h3>
+		<h3 th:text=" ${prod.name}">Pretty Tea</h3>
 
 		<div class="prodDetail">
 		<div class="row">
 		<div class="col-md-4">
-			<img src="" alt="Rental image" />
+			<img src="" th:src="@{'/img/'+${prod.imgFilename}}" alt="Product image" />
 		</div>
 		<div class="col-md-8">
 			<div class="row">
-				<div class="col-sm-4">Location</div>
-				<div class="col-sm-8" th:text="${prod.city} + ', ' + ${prod.state}">Montreal, Quebec</div>
+				<div class="col-sm-4">Name</div>
+				<div class="col-sm-8" th:text="${prod.name} ">Pretty Tea</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-4">Category</div>
-				<div class="col-sm-8" th:text="${prod.category}">House</div>
+				<div class="col-sm-8" th:text="${prod.category}">Tea</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-4">Description</div>
 				<div class="col-sm-8" th:text="${prod.description}">Lorem ipsum blabalb balbalbl.</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4">Date Sale Opened</div>
-				<div class="col-sm-8" th:text="${#dates.format(prod.getDateSaleOpenAsDate(), 'dd/MMM/yyyy')}">20/MAY/2016</div>
-			</div>
+			</div>			
 			<div class="row">
 				<div class="col-sm-4">Price</div>
-				<div class="col-sm-8" th:text="${#numbers.formatDecimal(prod.price, 9, 'POINT',2, 'COMMA') + '$ USD'}">809.000,00 $USD</div>
+				<div class="col-sm-8" th:text="${#numbers.formatDecimal(prod.price, 1, 'POINT',2, 'COMMA') + '$ / 100g'}">5.00$/100g</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">Number In Stock</div>
+				<div class="col-sm-8" th:text="${prod.nbInStock}">11</div>
 			</div>
 		</div>
 		</div>

@@ -18,38 +18,37 @@ public class Product {
 //    @Id @GeneratedValue
     private Long id;
     
-    private String label;
+    private String name;
     private String category;
     private String description = "";
     private BigDecimal price;    
-    private boolean active = true;
-    private LocalDate dateSaleOpen;
-    private String city;
-    private String state;
-
+    private boolean active = true;    
+    private int nbInStock = 0;
+    private String imgFilename = "";
+    
     private Product(){}
     
-    public Product(String label, String category, double price, String city, String state){
-	this.label = label;
+    public Product(String name, String category, double price, int inStock){
+	this.name = name;
 	this.category = category;
 	this.price = BigDecimal.valueOf(price);
-	this.city = city;
-	this.state = state;
-	this.dateSaleOpen = LocalDate.now();
+	this.nbInStock = inStock;
     }
 
-    public Long getId(){
-	return this.id;
-    }
-    public void setId(Long id){
-	this.id = id;
-    }
-    public String getLabel() {
-        return label;
+    public Long getId() {
+        return id;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCategory() {
@@ -84,36 +83,23 @@ public class Product {
         this.active = active;
     }
 
-    public LocalDate getDateSaleOpen() {
-        return dateSaleOpen;
+    public int getNbInStock() {
+        return nbInStock;
+    }
+
+    public void setNbInStock(int nbInStock) {
+        this.nbInStock = nbInStock;
+    }
+
+    public String getImgFilename() {
+        return imgFilename;
+    }
+
+    public void setImgFilename(String imgFilename) {
+        this.imgFilename = imgFilename;
     }
     
-    public Date getDateSaleOpenAsDate(){
-	return Date.valueOf(dateSaleOpen);
-    }
 
-    public void setDateSaleOpen(LocalDate dateSaleOpen) {
-        this.dateSaleOpen = dateSaleOpen;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-    
-    
-
-  
+   
     
 }

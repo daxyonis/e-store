@@ -11,18 +11,25 @@ import com.emaciejko.domain.Product;
 public class ProductDAOImpl implements ProductDAO {
 
     private List<Product> productList = new ArrayList<Product>();
+    
+    public ProductDAOImpl(){
+	Product product = new Product("Matcha","Green Tea", 15.00, 20);
+	
+	product.setDescription("Subtly flavoured, the true essence of Matcha is captured by this tea.");
+	product.setId((long) productList.size());
+	product.setImgFilename("matcha.jpg");
+	productList.add(product);
+	
+	product = new Product("Sencha","Green Tea", 10.00, 20);
+	
+	product.setDescription("Authentic Japanese Sencha with a sweet aroma.");
+	product.setId((long) productList.size());
+	product.setImgFilename("sencha.jpg");
+	productList.add(product);
+    }
 
     @Override
-    public List<Product> findAll() {
-	Product product = new Product("C-2857809348",
-				      "Condo",
-				      1600000.00,
-				      "San Jose",
-				      "California");
-	
-	product.setDescription("Magnificient condo sea overview");
-	product.setId((long) productList.size());
-	productList.add(product);	
+    public List<Product> findAll() {		
 	return productList;
     }
 
