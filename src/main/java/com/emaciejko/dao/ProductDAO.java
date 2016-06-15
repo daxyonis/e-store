@@ -11,6 +11,6 @@ public interface ProductDAO extends CrudRepository<Product, Long> {
     
    public Product findByName(String name);
    
-   public Iterable<Product> findByCategory(String category);
+   public Iterable<Product> findByCategory(Product.CategoryEnum category);
 
 }

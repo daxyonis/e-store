@@ -1,0 +1,81 @@
+<html lang="en"	
+	xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+	<title>Product Detail</title>
+	<link rel="stylesheet" href="/css/prodDetail.css" />		
+</head>
+<body>
+
+	<div class="container" layout:fragment="content">
+		<div class="page-header">
+			<h1>Product Detail</h1>
+			<p class="lead" th:text="*{prod.id != null} ? (${prod.name} + ' ' + ${prod.category}) : 'New Product'">Pretty Tea</p>
+		</div>
+		<div class="prodDetail">
+
+			<form class="form-horizontal" th:object="${prod}" th:action="@{/products}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error'">
+					<label for="name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{name}" placeholder="Product Name" />
+						<div th:errors="*{name}" class="text-danger"></div>
+					</div>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('category')}? 'has-error'">
+					<label for="category" class="col-sm-2 control-label">Category</label>
+					<div class="col-sm-10">
+						<select class="form-control" th:field="*{category}">
+							<option value="">Select a category</option>
+							<option th:each="cat : ${categoryArray}"
+								th:value="${cat.toString()}" th:text="${cat.toString()}">The categories..
+							</option>
+						</select>
+						<div th:errors="*{category}" class="text-danger"></div>
+					</div>
+				</div>				
+				<div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" rows="3" th:field="*{description}" placeholder="Description of the product..."/>
+					</div>
+				</div>				
+				<div class="form-group">
+					<label for="price" class="col-sm-2 control-label">Price</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{price}" placeholder="5.00" /><span> $ / 100g</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<label> <input type="checkbox" th:field="*{active}" /> Active
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="nbInStock" class="col-sm-2 control-label">Number in stock</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{nbInStock}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="imgFilename" class="col-sm-2 control-label">Image Filename (To Be MODIFIED!!)</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{imgFilename}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

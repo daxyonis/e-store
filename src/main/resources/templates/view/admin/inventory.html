@@ -8,9 +8,14 @@
 <body>
 
 	<div class="prodList container" layout:fragment="content">
+		
 		<div class="page-header">
-			<h1>All Available Teas</h1>
-			<p class="lead">Checkout all the awesome teas available now!</p>
+			<ol class="breadcrumb">
+			<li><a href="#" th:href="@{/admin}">Admin main page</a></li>
+			<li class="active">Inventory</li>
+			</ol>
+			<h1>Inventory Page</h1>
+			<p class="lead">Product inventory for admin actions</p>
 		</div>
 		<table class="table table-bordered table-striped">
 			<thead>
@@ -35,6 +40,12 @@
 				</tr>
 			</tbody>
 		</table>
+		<div class="pull-right">
+			<a href="#" th:href="@{/products/new}" class="btn btn-primary">
+			<span class="glyphicon glyphicon-plus"></span> Add a product</a>
+		</div>
+			
+		
 	</div>
 </body>
 </html>

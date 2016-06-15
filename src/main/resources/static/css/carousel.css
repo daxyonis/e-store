@@ -7,6 +7,15 @@ body {
   color: #5a5a5a;
 }
 
+.page-header {
+	margin-top: 80px;
+	border-bottom: none;	
+	padding-bottom: 0px;
+}
+
+thead {
+	background-color: @primary-color;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
