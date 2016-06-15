@@ -1,21 +1,16 @@
 package com.emaciejko.domain;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.sql.Date;
-import java.time.LocalDate;
-//import java.util.Date;
-//
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.Id;
-//
-//import lombok.Data;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-//@Entity
+
+@Entity
 public class Product {
     
-//    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
     private String name;
@@ -98,8 +93,15 @@ public class Product {
     public void setImgFilename(String imgFilename) {
         this.imgFilename = imgFilename;
     }
-    
 
+    @Override
+    public String toString() {
+	return "Product [id=" + id + ", name=" + name + ", category=" + category + ", description=" + description
+		+ ", price=" + price + ", active=" + active + ", nbInStock=" + nbInStock + ", imgFilename="
+		+ imgFilename + "]";
+    }
+
+   
    
     
 }

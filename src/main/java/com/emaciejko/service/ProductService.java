@@ -1,9 +1,8 @@
 package com.emaciejko.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.emaciejko.dao.ProductDAO;
 import com.emaciejko.domain.Product;
@@ -18,11 +17,11 @@ public class ProductService {
 	this.productDAO = productDAO;
     }
     
-    public List<Product> findAll(){
+    public Iterable<Product> findAll(){
 	return productDAO.findAll();
     }
     
     public Product findOne(int id){
-	return productDAO.findById(id);
+	return productDAO.findOne((long)id);
     }
 }

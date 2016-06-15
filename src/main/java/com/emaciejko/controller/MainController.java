@@ -1,7 +1,5 @@
 package com.emaciejko.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +26,7 @@ public class MainController {
     
     @RequestMapping("/products")
     public String viewProducts(Model model){
-	List<Product> prodList = prodService.findAll();
+	Iterable<Product> prodList = prodService.findAll();
 	model.addAttribute("prodList", prodList);
 	return "/view/product/list";
     }

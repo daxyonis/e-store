@@ -1,13 +1,16 @@
 package com.emaciejko.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.emaciejko.domain.Product;
 
-public interface ProductDAO {
+@Repository
+public interface ProductDAO extends CrudRepository<Product, Long> {
     
-    public List<Product> findAll();
-    
-    public Product findById(int id);
+   public Product findByName(String name);
+   
+   public Iterable<Product> findByCategory(String category);
 
 }
