@@ -3,7 +3,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/default">
 <head>
-	<title>Products list</title>	
+	<title>Products list</title>
+	<script src="/js/product.js"></script>	
 </head>
 <body>
 
@@ -29,23 +30,24 @@
 			</thead>
 			<tbody>
 				<tr th:each="prod: ${prodList}">
-					<td th:text="${prod.name}">my label</td>
+					<td><a th:href="@{'/product/'+${prod.id}}"><span th:text="${prod.name}">my label</span></a></td>
 					<td th:text="${prod.category}">my category</td>
 					<td th:text="${prod.description}">my description</td>
 					<td
 						th:text="${#numbers.formatDecimal(prod.price, 1, 'POINT',2, 'COMMA') + '$ / 100g'}">1.00
 						$ / 100g</td>
-					<td><a th:href="@{'/products/'+${prod.id}}"><span
-							class="glyphicon glyphicon-info-sign"></span></a></td>
+					<td><a th:href="@{'../product/edit/'+${prod.id}}"><span
+							class="glyphicon glyphicon-pencil"></span></a></td>
+					<td><a th:href="@{'../product/'+ ${prod.id}}"  class="removeLk"><span class="glyphicon glyphicon-trash"></span></a></td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="pull-right">
-			<a href="#" th:href="@{/products/new}" class="btn btn-primary">
+			<a href="#" th:href="@{/product/new}" class="btn btn-primary">
 			<span class="glyphicon glyphicon-plus"></span> Add a product</a>
-		</div>
-			
-		
+		</div>					
 	</div>
+	
+	
 </body>
 </html>

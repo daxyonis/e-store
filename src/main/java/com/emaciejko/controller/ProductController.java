@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.emaciejko.domain.Product;
@@ -32,16 +33,24 @@ public class ProductController {
 	return "/view/product/list";
     }
     
-    @RequestMapping(path="/products/{id}", method=RequestMethod.GET)
+    @RequestMapping(path="/product/{id}", method=RequestMethod.GET)
     public String details(@PathVariable int id, Model model){
 	Product prod = prodService.findOne(id);
 	model.addAttribute("prod", prod);
 	return "/view/product/details";
     }        
     
-    @RequestMapping(path="/products/new", method=RequestMethod.GET)
+    @RequestMapping(path="/product/new", method=RequestMethod.GET)
     public String newProduct(Model model){
 	Product prod = new Product("New");
+	model.addAttribute("prod", prod);
+	model.addAttribute("categoryArray", Product.CategoryEnum.values());
+	return "view/product/form";
+    }
+    
+    @RequestMapping(path="/product/edit/{id}", method=RequestMethod.GET)
+    public String edit(@PathVariable int id, Model model){
+	Product prod = prodService.findOne(id);
 	model.addAttribute("prod", prod);
 	model.addAttribute("categoryArray", Product.CategoryEnum.values());
 	return "view/product/form";
@@ -66,6 +75,13 @@ public class ProductController {
 	// flash the success message	    
 	redirectAttr.addAttribute("id", product.getId());
 	redirectAttr.addFlashAttribute("success", "Product  (" + product.getName() + ") was successfully saved.");
-	return "redirect:/products/{id}";
+	return "redirect:/product/{id}";
+    }
+    
+    @RequestMapping(path="/product/{id}", method=RequestMethod.DELETE)
+    @ResponseBody
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttr){
+	prodService.delete(id);
+	return id.toString();
     }
 }
