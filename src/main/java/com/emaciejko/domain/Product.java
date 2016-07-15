@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -15,15 +17,23 @@ public class Product {
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
-    private String name;    
+    @NotNull
+    private String name;
+    @NotNull
     private CategoryEnum category;
-    private String description;
+    private String description; 
+    @NotNull
     private BigDecimal price;    
-    private boolean active = true;    
+    private boolean active = true;
+    @Min(0)
     private int nbInStock = 0;
     private String imgFilename = "";
     
     private Product(){}
+    
+    public Product(String name){
+	this.name = name;	
+    }
     
     public Product(String name, CategoryEnum category, double price, int inStock){
 	this.name = name;

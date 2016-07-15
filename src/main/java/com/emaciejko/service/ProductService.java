@@ -24,4 +24,8 @@ public class ProductService {
     public Product findOne(int id){
 	return productDAO.findOne((long)id);
     }
+    
+    public Product save(Product product){
+	return productDAO.save(product);
+    }
 }
