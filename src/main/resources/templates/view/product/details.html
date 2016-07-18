@@ -19,7 +19,7 @@
 		<div class="prodDetail">
 		<div class="row">
 		<div class="col-md-4">
-			<img src="" th:src="@{'/img/'+${prod.imgFilename}}" alt="Product image" />
+			<img src="" th:src="@{'/product/' + ${prod.id} + '/image'}" alt="Product image" />
 		</div>
 		<div class="col-md-8">
 			<div class="row">

@@ -30,7 +30,7 @@
 					<td
 						th:text="${#numbers.formatDecimal(prod.price, 1, 'POINT',2, 'COMMA') + '$ / 100g'}">1.00
 						$ / 100g</td>
-					<td><a th:href="@{'/products/'+${prod.id}}"><span
+					<td><a th:href="@{'/product/'+${prod.id}}"><span
 							class="glyphicon glyphicon-info-sign"></span></a></td>
 				</tr>
 			</tbody>

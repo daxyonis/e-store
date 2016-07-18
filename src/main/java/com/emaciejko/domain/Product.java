@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -27,7 +30,9 @@ public class Product {
     private boolean active = true;
     @Min(0)
     private int nbInStock = 0;
-    private String imgFilename = "";
+    
+    @Transient
+    private MultipartFile image;    
     
     private Product(){}
     
@@ -97,20 +102,19 @@ public class Product {
     public void setNbInStock(int nbInStock) {
         this.nbInStock = nbInStock;
     }
-
-    public String getImgFilename() {
-        return imgFilename;
+      
+    public MultipartFile getImage() {
+        return image;
     }
 
-    public void setImgFilename(String imgFilename) {
-        this.imgFilename = imgFilename;
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     @Override
     public String toString() {
 	return "Product [id=" + id + ", name=" + name + ", category=" + category.toString() + ", description=" + description
-		+ ", price=" + price + ", active=" + active + ", nbInStock=" + nbInStock + ", imgFilename="
-		+ imgFilename + "]";
+		+ ", price=" + price + ", active=" + active + ", nbInStock=" + nbInStock + "]";
     }
 
    

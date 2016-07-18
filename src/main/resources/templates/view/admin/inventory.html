@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<div class="prodList container" layout:fragment="content">
+	<div class="prodList container" layout:fragment="content">	
 		
 		<div class="page-header">
 			<ol class="breadcrumb">
@@ -17,14 +17,18 @@
 			</ol>
 			<h1>Inventory Page</h1>
 			<p class="lead">Product inventory for admin actions</p>
+			<div th:class="${error} ? 'alert alert-danger' : (${success} ? 'alert alert-success' : '')">
+				<p th:text="${error} ? ${error} : (${success} ? ${success} : '')"></p>
+			</div>
 		</div>
 		<table class="table table-bordered table-striped">
 			<thead>
-				<tr>
+				<tr class="success">
 					<th>Name</th>
 					<th>Category</th>
 					<th>Description</th>
 					<th>Price</th>
+					<th></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -43,8 +47,8 @@
 			</tbody>
 		</table>
 		<div class="pull-right">
-			<a href="#" th:href="@{/product/new}" class="btn btn-primary">
-			<span class="glyphicon glyphicon-plus"></span> Add a product</a>
+			<a href="#" th:href="@{../product/new}" class="btn btn-primary">
+			<span class="glyphicon glyphicon-plus"></span> Add a product</a>			
 		</div>					
 	</div>
 	
