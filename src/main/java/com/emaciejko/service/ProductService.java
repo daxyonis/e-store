@@ -21,8 +21,8 @@ public class ProductService {
 	return productDAO.findAll();
     }
     
-    public Product findOne(int id){
-	return productDAO.findOne((long)id);
+    public Product findOne(Long id){
+	return productDAO.findOne(id);
     }
     
     public Product save(Product product){

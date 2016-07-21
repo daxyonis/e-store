@@ -66,15 +66,23 @@
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('nbInStock')}? 'has-error'">
 					<label for="nbInStock" class="col-sm-2 control-label">Number in stock</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" th:field="*{nbInStock}" />
+						<div th:errors="*{nbInStock}" class="text-danger"></div>
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label for="image" class="col-sm-2 control-label">Upload image</label>
+					<label for="prodImage" class="col-sm-2 control-label">Current image</label>
+					<div class="col-sm-10">
+						<img src="" th:src="@{'/product/' + ${prod.id} + '/image'}" alt="Product image" style="{width: 100px; height: auto}" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="image" class="col-sm-2 control-label">Upload new image</label>
 					<div class="col-sm-10">
 						<input type="file" class="form-control" name="image" id="image" />
 					</div>

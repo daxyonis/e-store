@@ -9,6 +9,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -20,15 +21,16 @@ public class Product {
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
-    @NotNull
+    @NotEmpty(message="The product name must not be empty.")
     private String name;
-    @NotNull
+    @NotNull(message="You must choose a category.")
     private CategoryEnum category;
     private String description; 
-    @NotNull
+    @NotNull(message="You must enter a price.")
+    @Min(value=0, message="The price must be greater than zero.")
     private BigDecimal price;    
     private boolean active = true;
-    @Min(0)
+    @Min(value=0, message="The number in stock must be greater than or equal to zero.")
     private int nbInStock = 0;
     
     @Transient
