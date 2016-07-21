@@ -190,11 +190,13 @@ public class ProductController {
      * @param id
      * @param redirectAttr
      * @return the id of deleted product, as String
+     * @throws IOException 
      */
     @RequestMapping(path="/product/{id}", method=RequestMethod.DELETE)
     @ResponseBody
-    public String delete(@PathVariable Long id, RedirectAttributes redirectAttr){
-	prodService.delete(id);
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttr) throws IOException{
+	prodService.delete(id);	
+	Files.delete(Paths.get(getProductImageFilename(id)));
 	return id.toString();
     }
 }
