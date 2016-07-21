@@ -76,7 +76,7 @@ public class ProductController {
      * @return	the page of one particular product details
      */
     @RequestMapping(path="/product/{id}", method=RequestMethod.GET)
-    public String details(@PathVariable int id, Model model){
+    public String details(@PathVariable Long id, Model model){
 	Product prod = prodService.findOne(id);
 	model.addAttribute("prod", prod);	
 	return "/view/product/details";
@@ -130,7 +130,7 @@ public class ProductController {
      * @return	the page with product form for edit
      */
     @RequestMapping(path="/product/edit/{id}", method=RequestMethod.GET)
-    public String edit(@PathVariable int id, Model model){
+    public String edit(@PathVariable Long id, Model model){
 	Product prod = prodService.findOne(id);
 	model.addAttribute("prod", prod);
 	model.addAttribute("categoryArray", Product.CategoryEnum.values());
