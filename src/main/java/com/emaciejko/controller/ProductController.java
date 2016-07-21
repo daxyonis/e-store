@@ -3,8 +3,11 @@ package com.emaciejko.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 //import org.slf4j.Logger;
@@ -14,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,8 +52,8 @@ public class ProductController {
      * @return filename as string
      */
     private String getProductImageFilename(Long productId){
-	path = Paths.get(uploadFilePath + "\\" + productId + ".png");
-	return path.toString();
+	path = Paths.get(uploadFilePath + "\\" + productId + ".png");	
+	return path.toString();	
     }
     
     /**
@@ -89,8 +93,21 @@ public class ProductController {
     @ResponseBody
     public byte[] getImage(@PathVariable Long id) throws IOException{
 		
-	File serverFile = new File(getProductImageFilename(id));
-	return Files.readAllBytes(serverFile.toPath());
+	File serverFile = new File(getProductImageFilename(id));	
+	return Files.readAllBytes(serverFile.toPath());	
+    }
+    
+    /**
+     * Exception handler for the image not found exception that happens
+     * in method above.
+     * @param req
+     * @param ex
+     * @return  empty byte array
+     */
+    @ExceptionHandler
+    @ResponseBody
+    public byte[] handleException(HttpServletRequest req, NoSuchFileException ex){
+	return new byte[]{};
     }
     
     /**

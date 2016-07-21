@@ -4,6 +4,7 @@
 	layout:decorator="layout/default">
 <head>
 	<title>Products list</title>	
+	<link rel="stylesheet" href="/css/prodList.css" />
 </head>
 <body>
 
@@ -14,24 +15,23 @@
 		</div>
 		<table class="table table-bordered table-striped">
 			<thead>
-				<tr>
+				<tr>					
 					<th>Name</th>
+					<th>Image</th>
 					<th>Category</th>
 					<th>Description</th>
-					<th>Price</th>
-					<th></th>
+					<th>Price</th>					
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="prod: ${prodList}">
-					<td th:text="${prod.name}">my label</td>
+					<td><a th:href="@{'/product/'+${prod.id}}"><span th:text="${prod.name}">my label</span></a></td>
+					<td><img src="" th:src="@{'/product/' + ${prod.id} + '/image'}" alt="Product image" /></td>					
 					<td th:text="${prod.category}">my category</td>
 					<td th:text="${prod.description}">my description</td>
 					<td
 						th:text="${#numbers.formatDecimal(prod.price, 1, 'POINT',2, 'COMMA') + '$ / 100g'}">1.00
-						$ / 100g</td>
-					<td><a th:href="@{'/product/'+${prod.id}}"><span
-							class="glyphicon glyphicon-info-sign"></span></a></td>
+						$ / 100g</td>					
 				</tr>
 			</tbody>
 		</table>

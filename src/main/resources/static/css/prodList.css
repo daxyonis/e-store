@@ -1,0 +1,21 @@
+.table {
+	table-layout: fixed;
+	overflow: auto;
+}
+
+.table th {
+	text-align: center;	
+}
+
+.table td {
+	text-align: center;	
+	/*display: block;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: no-wrap;
+}
+
+.table img {
+	width: 100px;
+	height: auto;
+}
