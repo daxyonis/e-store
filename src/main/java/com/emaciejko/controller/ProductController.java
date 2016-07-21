@@ -42,11 +42,21 @@ public class ProductController {
 	this.prodService = prodService;
     }
 
+    /**
+     * Compose the product image filename as saved on disk
+     * @param productId
+     * @return filename as string
+     */
     private String getProductImageFilename(Long productId){
 	path = Paths.get(uploadFilePath + "\\" + productId + ".png");
 	return path.toString();
     }
     
+    /**
+     * GET method 
+     * @param model
+     * @return	the page of products list
+     */
     @RequestMapping(path="/products", method=RequestMethod.GET)
     public String viewProducts(Model model){
 	Iterable<Product> prodList = prodService.findAll();
@@ -54,6 +64,13 @@ public class ProductController {
 	return "/view/product/list";
     }
     
+    /**
+     * GET method
+     * Read a given product
+     * @param id
+     * @param model
+     * @return	the page of one particular product details
+     */
     @RequestMapping(path="/product/{id}", method=RequestMethod.GET)
     public String details(@PathVariable int id, Model model){
 	Product prod = prodService.findOne(id);
@@ -61,7 +78,13 @@ public class ProductController {
 	return "/view/product/details";
     }        
     
-    // This is to serve the uploaded image for display in web page
+    /**
+     * GET method
+     * This serves the saved product image for display in web page
+     * @param id
+     * @return	one product image as byte array
+     * @throws IOException
+     */
     @RequestMapping(path="/product/{id}/image",method=RequestMethod.GET)
     @ResponseBody
     public byte[] getImage(@PathVariable Long id) throws IOException{
@@ -70,6 +93,11 @@ public class ProductController {
 	return Files.readAllBytes(serverFile.toPath());
     }
     
+    /**
+     * GET method
+     * @param model
+     * @return	the page with new product form
+     */
     @RequestMapping(path="/product/new", method=RequestMethod.GET)
     public String newProduct(Model model){
 	Product prod = new Product("New");
@@ -78,6 +106,12 @@ public class ProductController {
 	return "view/product/form";
     }
     
+    /**
+     * GET method
+     * @param id
+     * @param model
+     * @return	the page with product form for edit
+     */
     @RequestMapping(path="/product/edit/{id}", method=RequestMethod.GET)
     public String edit(@PathVariable int id, Model model){
 	Product prod = prodService.findOne(id);
@@ -86,6 +120,15 @@ public class ProductController {
 	return "view/product/form";
     }
     
+    /**
+     * POST method
+     * To add/save a new product (Create + Update)
+     * @param product
+     * @param bindingRes
+     * @param model
+     * @param redirectAttr
+     * @return	redirects to inventory page
+     */
     @RequestMapping(path="/products", method=RequestMethod.POST)    
     public String addProduct(@Valid @ModelAttribute("prod") Product product,	    
 	    BindingResult bindingRes,
@@ -124,6 +167,13 @@ public class ProductController {
 	return "redirect:/admin/inventory";	
     }
     
+    /**
+     * DELETE method
+     * Delete a given product
+     * @param id
+     * @param redirectAttr
+     * @return the id of deleted product, as String
+     */
     @RequestMapping(path="/product/{id}", method=RequestMethod.DELETE)
     @ResponseBody
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttr){
