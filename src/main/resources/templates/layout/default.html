@@ -44,9 +44,13 @@
 							<li><a href="/products">Teas</a></li>
 							<li><a href="#contact">Contact</a></li>							
 						</ul>
-						<ul class="nav navbar-nav pull-right">
+						<ul class="nav navbar-nav navbar-right">
 							<li><a href="/admin">Admin</a></li>
 						</ul>
+							<form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" 
+								  class="navbar-form navbar-right">
+									<button type="submit" class="btn btn-success">Logout</button>
+							</form>													
 					</div>
 				</div>
 			</nav>
