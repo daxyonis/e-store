@@ -44,8 +44,9 @@
 							<li><a href="/products">Teas</a></li>
 							<li><a href="#contact">Contact</a></li>							
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/admin">Admin</a></li>
+						<ul class="nav navbar-nav navbar-right">							
+							<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">Admin</a></li>
+							<li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
 						</ul>
 							<form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" 
 								  class="navbar-form navbar-right">
