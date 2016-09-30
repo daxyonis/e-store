@@ -25,6 +25,6 @@ public class AdminController {
     @RequestMapping("/admin/inventory")
     public String adminInventoryPage(Model model){
 	model.addAttribute("prodList", prodService.findAll());
-	return "/view/admin/inventory";
+	return "view/admin/inventory";
     }
 }

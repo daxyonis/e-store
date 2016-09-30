@@ -65,7 +65,7 @@ public class ProductController {
     public String viewProducts(Model model){
 	Iterable<Product> prodList = prodService.findAll();
 	model.addAttribute("prodList", prodList);
-	return "/view/product/list";
+	return "view/product/list";
     }
     
     /**
@@ -79,7 +79,7 @@ public class ProductController {
     public String details(@PathVariable Long id, Model model){
 	Product prod = prodService.findOne(id);
 	model.addAttribute("prod", prod);	
-	return "/view/product/details";
+	return "view/product/details";
     }        
     
     /**
