@@ -3,9 +3,14 @@ package com.emaciejko;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.emaciejko.dao.ProductDAO;
@@ -23,10 +28,12 @@ public class EStoreApplication {
     
     private static final Logger log = LoggerFactory.getLogger(EStoreApplication.class);
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager() {
-//	return new JpaTransactionManager();
-//    }
+    @Bean
+    @Primary
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().build();
+    }
 
     public static void main(String[] args) {
 	SpringApplication.run(EStoreApplication.class, args);
