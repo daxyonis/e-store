@@ -177,11 +177,11 @@ public class ProductController {
 	    catch(Exception e){
 		e.printStackTrace();
 		redirectAttr.addFlashAttribute("error",  "Image " +  image.getOriginalFilename()+ " failed to be saved.");
-		return "redirect:/admin/inventory";
+		return "redirect:admin/inventory";
 	    }
 	}	
 	redirectAttr.addFlashAttribute("success", "Product  (" + product.getName() + ") was successfully saved.");
-	return "redirect:/admin/inventory";	
+	return "redirect:admin/inventory";	
     }
     
     /**

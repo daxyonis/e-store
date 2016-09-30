@@ -19,7 +19,7 @@ public class AdminController {
     
     @RequestMapping("/admin")
     public String adminPage(){
-	return "/view/admin/admin";
+	return "view/admin/admin";
     }
     
     @RequestMapping("/admin/inventory")
