@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.emaciejko.dao.CustomerDAO;
@@ -30,30 +32,16 @@ public class EStoreApplication {
     }    
     
     @Bean
-	public CommandLineRunner demo(ProductDAO prodRepo, CustomerDAO custRepo) {
-		return (args) -> {
-			// save a couple of customers
-		    	List<Customer> addedCustomers = new ArrayList<>();
-		    	addedCustomers.add(custRepo.save(new Customer("Bobby", "Bazini", "bobbizzi@starz.net", "814-842-4224", "Quebec", "Quebec")));
-		    	addedCustomers.add(custRepo.save(new Customer("Lydia", "Sarcelle", "lidy1234@gmail.com", "(617)444-1234", "Montréal", "Québec")));
-		    	addedCustomers.add(custRepo.save(new Customer("Norman", "Weisle", "nweisle@canadagvt.ca", "(819)303-4004 #554", "Ottawa", "Ontario")));
-		    	
-		    
+    @Order(Ordered.LOWEST_PRECEDENCE - 1)
+    public CommandLineRunner demo1(ProductDAO prodRepo) {
+		return (args) -> {					    
 		    	// save a couple of products
 		    	List<Product> addedProducts = new ArrayList<>();
 		    	prodRepo.deleteAll();
 		    	addedProducts.add(prodRepo.save(new Product("Black Dragon", CategoryEnum.BLACK_TEA, 16.0, 25)));
 		    	addedProducts.add(prodRepo.save(new Product("Dark Lord", CategoryEnum.BLACK_TEA, 16.0, 25)));
 		    	addedProducts.add(prodRepo.save(new Product("White Dragon", CategoryEnum.WHITE_TEA, 17.0, 22)));
-		    	addedProducts.add(prodRepo.save(new Product("Matcha", CategoryEnum.GREEN_TEA, 20.0, 20)));
-
-			// fetch all customers
-		    	log.info("Customers found with findAll():");
-			log.info("-------------------------------");
-			for (Customer cust : custRepo.findAll()) {
-				log.info(cust.toString());
-			}
-			log.info("");
+		    	addedProducts.add(prodRepo.save(new Product("Matcha", CategoryEnum.GREEN_TEA, 20.0, 20)));			
         
 //			log.info("Products added with save():");
 //			log.info("-------------------------------");
@@ -87,4 +75,24 @@ public class EStoreApplication {
 //			log.info("");
 		};
 	}
+    
+    @Bean
+    @Order(Ordered.LOWEST_PRECEDENCE - 2)
+    public CommandLineRunner demo2(CustomerDAO custRepo){
+	return (args) -> {
+	    	// save a couple of customers
+	    	List<Customer> addedCustomers = new ArrayList<>();
+	    	addedCustomers.add(custRepo.save(new Customer("Bobby", "Bazini", "bobbizzi@starz.net", "814-842-4224", "Quebec", "Quebec")));
+	    	addedCustomers.add(custRepo.save(new Customer("Lydia", "Sarcelle", "lidy1234@gmail.com", "(617)444-1234", "Montréal", "Québec")));
+	    	addedCustomers.add(custRepo.save(new Customer("Norman", "Weisle", "nweisle@canadagvt.ca", "(819)303-4004 #554", "Ottawa", "Ontario")));
+	 
+	    	// fetch all customers
+	    	log.info("Customers found with findAll():");
+		log.info("-------------------------------");
+		for (Customer cust : custRepo.findAll()) {
+			log.info(cust.toString());
+		}
+		log.info("");
+	};
+    }
 }
