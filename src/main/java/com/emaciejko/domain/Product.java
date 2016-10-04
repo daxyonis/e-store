@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
-public class Product {
+public class Product implements DomainObject {
     
     public enum CategoryEnum {GREEN_TEA, BLACK_TEA, WHITE_TEA, TEA}; 
     
@@ -49,10 +49,12 @@ public class Product {
 	this.nbInStock = inStock;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

@@ -1,0 +1,42 @@
+<html lang="en"	
+	xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+	<title>Customers list</title>	
+	
+</head>
+<body>
+
+	<div class="container" layout:fragment="content">
+		<div class="page-header">
+			<h1>All Customers</h1>
+			<p class="lead">Your awesome online customers</p>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>	
+					<th>Edit</th>				
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>City</th>
+					<th>Province</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cust: ${customerList}">
+					<td><a th:href="@{'/customer/show/'+${cust.id}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+					<td th:text="${cust.firstName}">First name</td>
+					<td th:text="${cust.lastName}">Last name</td>
+					<td th:text="${cust.email}">Last name</td>
+					<td th:text="${cust.phoneNb}">Last name</td>
+					<td th:text="${cust.city}">Last name</td>
+					<td th:text="${cust.province}">Last name</td>										
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
