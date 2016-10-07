@@ -1,4 +1,4 @@
-package com.emaciejko;
+package com.emaciejko.domain;
 
 import static org.junit.Assert.*;
 
@@ -7,13 +7,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.i18n.LocaleContextHolder;
-//import org.springframework.test.context.TestPropertySource;
-//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.emaciejko.domain.Province;
 import com.emaciejko.util.I18n;
 
 public class ProvinceTest {
