@@ -37,14 +37,14 @@ public class CustomerController {
    @RequestMapping("/edit/{id}")
    public String edit(@PathVariable Long id, Model model){
        model.addAttribute("customer", customerService.findOne(id));
-       model.addAttribute("provinces", Province.getNames());
+       model.addAttribute("provinces", Province.getKeyedNames());
        return "view/customer/customerForm";
    }
       
    @RequestMapping("/new")
    public String newOne(Model model){
        model.addAttribute("customer", new Customer("new"));
-       model.addAttribute("provinces", Province.getNames());
+       model.addAttribute("provinces", Province.getKeyedNames());
        return "view/customer/customerForm";
    }
    

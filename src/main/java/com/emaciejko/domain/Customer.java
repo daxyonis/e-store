@@ -87,11 +87,11 @@ public class Customer implements DomainObject{
     public void setCity(String city) {
         this.city = city;
     }
-    public String getProvince() {
-        return province.toString();
+    public Province getProvince() {
+        return province;
     }
-    public void setProvince(String province) {
-	this.province = Province.valueOf(province);	
+    public void setProvince(Province province) {
+	this.province = province;	
     }
     public String getPostalCode() {
         return postalCode;
