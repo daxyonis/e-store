@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.emaciejko.domain.Customer;
+import com.emaciejko.domain.Province;
 import com.emaciejko.service.CustomerService;
 
 @RequestMapping("/customer")
@@ -36,12 +37,14 @@ public class CustomerController {
    @RequestMapping("/edit/{id}")
    public String edit(@PathVariable Long id, Model model){
        model.addAttribute("customer", customerService.findOne(id));
+       model.addAttribute("provinces", Province.getNames());
        return "view/customer/customerForm";
    }
       
    @RequestMapping("/new")
    public String newOne(Model model){
        model.addAttribute("customer", new Customer("new"));
+       model.addAttribute("provinces", Province.getNames());
        return "view/customer/customerForm";
    }
    

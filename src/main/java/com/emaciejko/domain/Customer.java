@@ -17,7 +17,7 @@ public class Customer implements DomainObject{
     private String addressLine1;
     private String addressLine2;
     private String city;
-    private String province;
+    private Province province;
     private String postalCode;
     
     private Customer(){}
@@ -34,7 +34,7 @@ public class Customer implements DomainObject{
 	this.email = email;
 	this.phoneNb = phone;
 	this.city = city;
-	this.province = province;	
+	this.province = Province.valueOf(province);	
     }
     
     @Override
@@ -88,10 +88,10 @@ public class Customer implements DomainObject{
         this.city = city;
     }
     public String getProvince() {
-        return province;
+        return province.toString();
     }
     public void setProvince(String province) {
-        this.province = province;
+	this.province = Province.valueOf(province);	
     }
     public String getPostalCode() {
         return postalCode;

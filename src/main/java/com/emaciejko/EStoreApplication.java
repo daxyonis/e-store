@@ -82,9 +82,9 @@ public class EStoreApplication {
 	return (args) -> {
 	    	// save a couple of customers
 	    	List<Customer> addedCustomers = new ArrayList<>();
-	    	addedCustomers.add(custRepo.save(new Customer("Bobby", "Bazini", "bobbizzi@starz.net", "814-842-4224", "Quebec", "Quebec")));
-	    	addedCustomers.add(custRepo.save(new Customer("Lydia", "Sarcelle", "lidy1234@gmail.com", "(617)444-1234", "Montréal", "Québec")));
-	    	addedCustomers.add(custRepo.save(new Customer("Norman", "Weisle", "nweisle@canadagvt.ca", "(819)303-4004 #554", "Ottawa", "Ontario")));
+	    	addedCustomers.add(custRepo.save(new Customer("Bobby", "Bazini", "bobbizzi@starz.net", "814-842-4224", "Quebec", "QC")));
+	    	addedCustomers.add(custRepo.save(new Customer("Lydia", "Sarcelle", "lidy1234@gmail.com", "(617)444-1234", "Montréal", "QC")));
+	    	addedCustomers.add(custRepo.save(new Customer("Norman", "Weisle", "nweisle@canadagvt.ca", "(819)303-4004 #554", "Ottawa", "ON")));
 	 
 	    	// fetch all customers
 	    	log.info("Customers found with findAll():");
