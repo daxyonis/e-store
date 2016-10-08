@@ -15,7 +15,7 @@ public enum Province {
      */
     static
     {	
-	mapNames();
+	reset();
     }
     
     /**
