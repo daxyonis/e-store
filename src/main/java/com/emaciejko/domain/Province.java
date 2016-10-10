@@ -6,17 +6,10 @@ import java.util.Map;
 import com.emaciejko.util.I18n;
 
 public enum Province {
-    BC, AB, SK, MB, ON, QC, NB, NS, PE, NL; 
+    BC, AB, SK, MB, ON, QC, NB, NS, PE, NL;
     
     private static Map<Province, String> mappedNames  = new LinkedHashMap<>();
-    
-    /**
-     * static initialization
-     */
-    static
-    {	
-	reset();
-    }
+        
     
     /**
      *  (Re)mapping of the province names
@@ -42,7 +35,8 @@ public enum Province {
      * @return  the map of province enums with the translated province names as values
      * Depends on the locale as given by I18n
      */
-    public static Map<Province, String> getKeyedNames() {
+    public static Map<Province, String> getKeyedNames() {	
+	reset();	// we do this otherwise the spring.mvc.locale is not respected
 	return mappedNames;
 	}
     
@@ -52,5 +46,5 @@ public enum Province {
      */
     public String getName(){	
 	return mappedNames.get(this);
-    }
+    }   
 }

@@ -31,7 +31,7 @@ public class EStoreApplication {
 
     public static void main(String[] args) {
 	SpringApplication.run(EStoreApplication.class, args);	
-    }      
+    }           
     
     @Bean
     @Order(Ordered.LOWEST_PRECEDENCE - 1)
