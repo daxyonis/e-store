@@ -25,7 +25,6 @@ public final class I18n {
     
     public static Locale getEffectiveLocale(){	
 	String lang = LocaleContextHolder.getLocale().getLanguage();
-	System.out.printf("\n\n <<<<< Locale language = %s \n\n",lang);
 	switch(lang){
 	case "fr":
 	case "fr_FR":
