@@ -1,5 +1,6 @@
 package com.emaciejko;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,10 @@ public class EStoreApplication {
 		    	// save a couple of products
 		    	List<Product> addedProducts = new ArrayList<>();
 		    	prodRepo.deleteAll();
-		    	addedProducts.add(prodRepo.save(new Product("Black Dragon", CategoryEnum.BLACK_TEA, 16.0, 25)));
-		    	addedProducts.add(prodRepo.save(new Product("Dark Lord", CategoryEnum.BLACK_TEA, 16.0, 25)));
-		    	addedProducts.add(prodRepo.save(new Product("White Dragon", CategoryEnum.WHITE_TEA, 17.0, 22)));
-		    	addedProducts.add(prodRepo.save(new Product("Matcha", CategoryEnum.GREEN_TEA, 20.0, 20)));			
+		    	addedProducts.add(prodRepo.save(new Product("Black Dragon", CategoryEnum.BLACK_TEA, BigDecimal.valueOf(16.0), 25)));
+		    	addedProducts.add(prodRepo.save(new Product("Dark Lord", CategoryEnum.BLACK_TEA, BigDecimal.valueOf(16.0), 25)));
+		    	addedProducts.add(prodRepo.save(new Product("White Dragon", CategoryEnum.WHITE_TEA, BigDecimal.valueOf(17.0), 22)));
+		    	addedProducts.add(prodRepo.save(new Product("Matcha", CategoryEnum.GREEN_TEA, BigDecimal.valueOf(20.0), 20)));			
         
 //			log.info("Products added with save():");
 //			log.info("-------------------------------");

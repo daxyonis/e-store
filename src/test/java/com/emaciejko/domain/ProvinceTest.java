@@ -25,7 +25,7 @@ public class ProvinceTest {
 	// when running the application a locale is automatically set 
 	// at some point; however this method must be invoked whenever a change of locale
 	// happens in the application programmatically	
-	Province.reset();			
+	//Province.reset();			
 	
 	// Get the province names and compare them to the bundle result
 	Map<Province, String> m = Province.getKeyedNames();

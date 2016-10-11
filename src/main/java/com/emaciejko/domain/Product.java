@@ -42,10 +42,10 @@ public class Product implements DomainObject {
 	this.name = name;	
     }
     
-    public Product(String name, CategoryEnum category, double price, int inStock){
+    public Product(String name, CategoryEnum category, BigDecimal price, int inStock){
 	this.name = name;
 	this.category = category;
-	this.price = BigDecimal.valueOf(price);
+	this.price = price;
 	this.nbInStock = inStock;
     }
 
