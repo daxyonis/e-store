@@ -1,16 +1,18 @@
 package com.emaciejko.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 @Entity
 public class Customer implements DomainObject{
     
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;    
+    private Integer id;    
     @Version
     private Integer version;
     private String firstName;
@@ -22,6 +24,9 @@ public class Customer implements DomainObject{
     private String city;
     private Province province;
     private String postalCode;
+    
+    @OneToOne
+    private User user;
     
     private Customer(){}
     
@@ -41,11 +46,11 @@ public class Customer implements DomainObject{
     }
     
     @Override
-    public Long getId() {
+    public Integer getId() {
 	return id;
     }
     @Override
-    public void setId(Long id) {
+    public void setId(Integer id) {
 	this.id = id;	
     }
     
@@ -110,6 +115,13 @@ public class Customer implements DomainObject{
     }
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }        
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

@@ -42,7 +42,7 @@ public class CustomerController {
     * @return       the view for one given customer
     */
    @RequestMapping("/show/{id}")
-   public String show(@PathVariable Long id, Model model){
+   public String show(@PathVariable Integer id, Model model){
        model.addAttribute("customer", customerService.findOne(id));
        return "view/customer/show";
    }
@@ -55,7 +55,7 @@ public class CustomerController {
     * @return      the view to edit the given customer
     */
    @RequestMapping("/edit/{id}")
-   public String edit(@PathVariable Long id, Model model){
+   public String edit(@PathVariable Integer id, Model model){
        model.addAttribute("customer", customerService.findOne(id));
        model.addAttribute("provinces", Province.getKeyedNames());
        return "view/customer/customerForm";
@@ -93,7 +93,7 @@ public class CustomerController {
     * @return        redirects to list of customers
     */
    @RequestMapping("/delete/{id}")
-   public String delete(@PathVariable Long id){
+   public String delete(@PathVariable Integer id){
        customerService.delete(id);
        return "redirect:/customer/list";
    }

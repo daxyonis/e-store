@@ -48,11 +48,11 @@ public class ProductController {
 
     /**
      * Compose the product image filename as saved on disk
-     * @param productId
+     * @param integer
      * @return filename as string
      */
-    private String getProductImageFilename(Long productId){
-	path = Paths.get(uploadFilePath + "\\" + productId + ".png");	
+    private String getProductImageFilename(Integer id){
+	path = Paths.get(uploadFilePath + "\\" + id + ".png");	
 	return path.toString();	
     }
     
@@ -76,7 +76,7 @@ public class ProductController {
      * @return	the page of one particular product details
      */
     @RequestMapping(path="/product/{id}", method=RequestMethod.GET)
-    public String details(@PathVariable Long id, Model model){
+    public String details(@PathVariable Integer id, Model model){
 	Product prod = prodService.findOne(id);
 	model.addAttribute("prod", prod);	
 	return "view/product/details";
@@ -91,7 +91,7 @@ public class ProductController {
      */
     @RequestMapping(path="/product/{id}/image",method=RequestMethod.GET)
     @ResponseBody
-    public byte[] getImage(@PathVariable Long id) throws IOException{
+    public byte[] getImage(@PathVariable Integer id) throws IOException{
 		
 	File serverFile = new File(getProductImageFilename(id));	
 	return Files.readAllBytes(serverFile.toPath());	
@@ -130,7 +130,7 @@ public class ProductController {
      * @return	the page with product form for edit
      */
     @RequestMapping(path="/product/edit/{id}", method=RequestMethod.GET)
-    public String edit(@PathVariable Long id, Model model){
+    public String edit(@PathVariable Integer id, Model model){
 	Product prod = prodService.findOne(id);
 	model.addAttribute("prod", prod);
 	model.addAttribute("categoryArray", Product.CategoryEnum.values());
@@ -194,7 +194,7 @@ public class ProductController {
      */
     @RequestMapping(path="/product/{id}", method=RequestMethod.DELETE)
     @ResponseBody
-    public String delete(@PathVariable Long id, RedirectAttributes redirectAttr) throws IOException{
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttr) throws IOException{
 	prodService.delete(id);	
 	Files.delete(Paths.get(getProductImageFilename(id)));
 	return id.toString();

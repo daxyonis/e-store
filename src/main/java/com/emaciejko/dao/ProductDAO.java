@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.emaciejko.domain.Product;
 
 @Repository
-public interface ProductDAO extends CrudRepository<Product, Long> {
+public interface ProductDAO extends CrudRepository<Product, Integer> {
     
    public Product findByName(String name);
    

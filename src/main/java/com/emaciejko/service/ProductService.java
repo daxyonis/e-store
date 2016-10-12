@@ -20,7 +20,7 @@ public class ProductService {
 	return productDAO.findAll();
     }
     
-    public Product findOne(Long id){
+    public Product findOne(Integer id){
 	return productDAO.findOne(id);
     }
     
@@ -28,7 +28,7 @@ public class ProductService {
 	return productDAO.save(product);
     }
     
-    public void delete(Long id){
+    public void delete(Integer id){
 	productDAO.delete(id);
     }
 }

@@ -65,7 +65,7 @@ public class CustomerControllerTest {
     @Test
     public void showTest() throws Exception{
 	Customer customer = new Customer("Joe");
-	Long id = 1L;
+	Integer id = 1;
 	customer.setId(id);
 	
 	when(customerService.findOne(id)).thenReturn(customer);
@@ -80,7 +80,7 @@ public class CustomerControllerTest {
     @Test
     public void editTest() throws Exception{
 	Customer customer = new Customer("Joe");
-	Long id = 1L;
+	Integer id = 1;
 	customer.setId(id);
 	
 	when(customerService.findOne(id)).thenReturn(customer);
@@ -113,7 +113,7 @@ public class CustomerControllerTest {
     @Test
     public void saveTest() throws Exception{
 	Customer customer = new Customer("John","Doe","johndoe@mail.com","819-384-5872", "Quebec", "QC");
-	customer.setId(5L);
+	customer.setId(5);
 	
 	when(customerService.save(Matchers.<Customer>any())).thenReturn(customer);
 	
@@ -142,7 +142,7 @@ public class CustomerControllerTest {
     
     @Test
     public void deleteTest() throws Exception{
-	Long id = 1L;
+	Integer id = 1;
 	
 	 mockMvc.perform(get("/customer/delete/" + id))
 	                .andExpect(status().is3xxRedirection())

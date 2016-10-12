@@ -20,7 +20,7 @@ public class Product implements DomainObject {
     public enum CategoryEnum {GREEN_TEA, BLACK_TEA, WHITE_TEA, TEA}; 
     
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     
     @Version
     private Integer version;
@@ -54,8 +54,13 @@ public class Product implements DomainObject {
     }
 
     @Override
-    public Long getId() {
+    public Integer getId() {
         return id;
+    }
+    
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getVersion() {
@@ -64,12 +69,7 @@ public class Product implements DomainObject {
 
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
+    }    
 
     public String getName() {
         return name;

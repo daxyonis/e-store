@@ -37,7 +37,7 @@ public class ProductServiceTest {
     
     @Test
     public void findOneTest(){
-	Product prod = prodService.findOne(1L);
+	Product prod = prodService.findOne(1);
 	assertTrue(1L == prod.getId());
     }
     
@@ -59,7 +59,7 @@ public class ProductServiceTest {
     @Test
     public void deleteTest(){
 	
-	prodService.delete(1L);
+	prodService.delete(1);
 	List<Product> products = (List<Product>) prodService.findAll();	
 	assertEquals(3, products.size());
     }

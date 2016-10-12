@@ -65,7 +65,7 @@ public class ProductControllerTest {
     
     @Test
     public void detailsTest() throws Exception{
-	Long id = (long)1;
+	Integer id = 1;
 	
 	when(prodService.findOne(id)).thenReturn(new Product("Prod " + id));
 	
@@ -90,7 +90,7 @@ public class ProductControllerTest {
     
     @Test
     public void editTest() throws Exception {
-	Long id = (long)1;
+	Integer id = 1;
 	
 	when(prodService.findOne(id)).thenReturn(new Product("Prod " + id));
 	
@@ -106,7 +106,7 @@ public class ProductControllerTest {
     @Test
     public void addProductTest() throws Exception{
 	
-	Long id = 1L;
+	Integer id = 1;
 	String prodName = "Super Tea";
 	Product.CategoryEnum prodCategory = Product.CategoryEnum.WHITE_TEA;
 	BigDecimal prodPrice = BigDecimal.valueOf(14.50);
@@ -141,7 +141,7 @@ public class ProductControllerTest {
     
     @Test
     public void deleteTest() throws Exception{
-        Long id = 1L;
+	Integer id = 1;
 
         mockMvc.perform(delete("/product/" + id)
         	.param("id", String.valueOf(id)))

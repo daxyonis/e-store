@@ -2,7 +2,7 @@ package com.emaciejko.domain;
 
 public interface DomainObject {
 
-    Long getId();
+    Integer getId();
     
-    void setId(Long id);
+    void setId(Integer id);
 }
