@@ -20,6 +20,7 @@
 
 			<form class="form-horizontal" th:object="${prod}" th:action="@{/products}" method="post" enctype="multipart/form-data">				
 				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{version}" />
 				
 				<div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error'">
 					<label for="name" class="col-sm-2 control-label">Name</label>

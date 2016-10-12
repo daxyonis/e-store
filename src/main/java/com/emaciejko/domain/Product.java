@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +21,9 @@ public class Product implements DomainObject {
     
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+    
+    @Version
+    private Integer version;
     
     @NotEmpty(message="The product name must not be empty.")
     private String name;
@@ -52,6 +56,14 @@ public class Product implements DomainObject {
     @Override
     public Long getId() {
         return id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     @Override
