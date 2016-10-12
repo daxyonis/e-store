@@ -27,6 +27,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.emaciejko.domain.Product;
 import com.emaciejko.service.ProductService;
 
+/**
+ * Unit test for ProductController
+ * @author Eva
+ *
+ */
 public class ProductControllerTest {
 
     @Mock
