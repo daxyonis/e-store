@@ -25,7 +25,7 @@ public class Customer implements DomainObject{
     private Province province;
     private String postalCode;
     
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private User user;
     
     private Customer(){}
