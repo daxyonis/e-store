@@ -1,6 +1,7 @@
 package com.emaciejko.domain;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,11 +20,12 @@ public class Customer implements DomainObject{
     private String lastName;
     private String email;
     private String phoneNb;
-    private String addressLine1;
-    private String addressLine2;
-    private String city;
-    private Province province;
-    private String postalCode;
+    
+    @Embedded
+    private Address billingAddress;
+    
+    @Embedded
+    private Address shippingAddress;
     
     @OneToOne(cascade = {CascadeType.ALL})
     private User user;
@@ -41,8 +43,9 @@ public class Customer implements DomainObject{
 	this.lastName = lastName;
 	this.email = email;
 	this.phoneNb = phone;
-	this.city = city;
-	this.province = Province.valueOf(province);	
+	this.billingAddress = new Address();
+	this.billingAddress.setCity(city);
+	this.billingAddress.setProvince(Province.valueOf(province));
     }
     
     @Override
@@ -86,36 +89,22 @@ public class Customer implements DomainObject{
     public void setPhoneNb(String phoneNb) {
         this.phoneNb = phoneNb;
     }
-    public String getAddressLine1() {
-        return addressLine1;
+    
+    public Address getBillingAddress() {
+        return billingAddress;
     }
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
-    public String getAddressLine2() {
-        return addressLine2;
+
+    public Address getShippingAddress() {
+        return shippingAddress;
     }
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
-    public String getCity() {
-        return city;
-    }
-    public void setCity(String city) {
-        this.city = city;
-    }
-    public Province getProvince() {
-        return province;
-    }
-    public void setProvince(Province province) {
-	this.province = province;	
-    }
-    public String getPostalCode() {
-        return postalCode;
-    }
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }        
 
     public User getUser() {
         return user;
@@ -126,7 +115,8 @@ public class Customer implements DomainObject{
 
     @Override
     public String toString() {
-	return (firstName + " " + lastName + ", " +  phoneNb + ", " + email + ", " + city + ", " + province);
+	return (firstName + " " + lastName + ", " +  phoneNb + ", " + email +
+		(billingAddress != null ? (", " + billingAddress.getCity() + ", " + billingAddress.getProvince()) : ""));
     }
     
     

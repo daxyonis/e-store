@@ -122,8 +122,8 @@ public class CustomerControllerTest {
         		.param("lastName", customer.getLastName())
         		.param("email", customer.getEmail())
         		.param("phoneNb", customer.getPhoneNb())
-        		.param("city", customer.getCity())
-        		.param("province", customer.getProvince().toString()))		
+        		.param("city", customer.getBillingAddress().getCity())
+        		.param("province", customer.getBillingAddress().getProvince().toString()))		
 		.andExpect(status().is3xxRedirection())
 		.andExpect(view().name("redirect:/customer/show/" + customer.getId()));	
 	
@@ -135,8 +135,8 @@ public class CustomerControllerTest {
         assertEquals(customer.getLastName(), boundCustomer.getValue().getLastName());
         assertEquals(customer.getEmail(), boundCustomer.getValue().getEmail());
         assertEquals(customer.getPhoneNb(), boundCustomer.getValue().getPhoneNb());
-        assertEquals(customer.getCity(), boundCustomer.getValue().getCity());
-        assertEquals(customer.getProvince(), boundCustomer.getValue().getProvince());
+        assertEquals(customer.getBillingAddress().getCity(), boundCustomer.getValue().getBillingAddress().getCity());
+        assertEquals(customer.getBillingAddress().getProvince(), boundCustomer.getValue().getBillingAddress().getProvince());
                 
     }
     

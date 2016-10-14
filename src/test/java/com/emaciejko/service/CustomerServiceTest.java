@@ -49,8 +49,8 @@ public class CustomerServiceTest {
 	assertEquals(expected.getLastName(), other.getLastName());
 	assertEquals(expected.getEmail(), other.getEmail());
 	assertEquals(expected.getPhoneNb(), other.getPhoneNb());
-	assertEquals(expected.getCity(), other.getCity());
-	assertEquals(expected.getProvince(), other.getProvince());
+	assertEquals(expected.getBillingAddress().getCity(), other.getBillingAddress().getCity());
+	assertEquals(expected.getBillingAddress().getProvince(), other.getBillingAddress().getProvince());
     }
     
     @Test
