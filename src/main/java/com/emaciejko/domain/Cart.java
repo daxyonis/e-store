@@ -5,6 +5,10 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/**
+ * @author Eva
+ *
+ */
 @Entity
 public class Cart implements DomainObject {
     

@@ -2,6 +2,10 @@ package com.emaciejko.domain;
 
 import javax.persistence.*;
 
+/**
+ * @author Eva
+ *
+ */
 @Entity
 public class CartDetail implements DomainObject{
     
