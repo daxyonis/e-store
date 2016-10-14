@@ -55,5 +55,8 @@ public class AbstractDomain implements DomainObject {
 	    dateCreated = new Date();
 	}
     }
+    // NOTE : the previous solution for timestamps
+    // can also be implemented using @CreationTimestamp and @UpdateTimestamp annotations
+    // on the corresponding attributes : see http://www.thoughts-on-java.org/persist-creation-update-timestamps-hibernate/
     
 }

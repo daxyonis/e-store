@@ -34,8 +34,8 @@
 					<td th:text="${cust.lastName}">Last name</td>
 					<td th:text="${cust.email}">Last name</td>
 					<td th:text="${cust.phoneNb}">Last name</td>
-					<td th:text="${cust.city}">Last name</td>
-					<td th:text="${cust.province}">Last name</td>	
+					<td th:text="${cust.billingAddress.city}">Last name</td>
+					<td th:text="${cust.billingAddress.province}">Last name</td>	
 					<td><a th:href="@{'/customer/edit/'+${cust.id}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 					<td><a th:href="@{'/customer/delete/'+${cust.id}}"><span class="glyphicon glyphicon-trash"></span></a></td>									
 				</tr>
