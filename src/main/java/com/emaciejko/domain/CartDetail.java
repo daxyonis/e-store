@@ -7,38 +7,15 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class CartDetail implements DomainObject{
-    
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
-    
-    @Version
-    private Integer version;
-    
+public class CartDetail extends AbstractDomain{
+       
     @ManyToOne
     private Cart cart;
     
     @OneToOne
     private Product product;
-
-    @Override
-    public Integer getId() {
-	return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-	this.id = id;	
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+    
+    private Integer quantity;
 
     public Cart getCart() {
         return cart;
@@ -54,6 +31,14 @@ public class CartDetail implements DomainObject{
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
     
     

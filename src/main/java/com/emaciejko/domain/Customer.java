@@ -3,19 +3,11 @@ package com.emaciejko.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Version;
 
 @Entity
-public class Customer implements DomainObject{
-    
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;    
-    @Version
-    private Integer version;
+public class Customer extends AbstractDomain{
+        
     private String firstName;
     private String lastName;
     private String email;
@@ -27,7 +19,7 @@ public class Customer implements DomainObject{
     @Embedded
     private Address shippingAddress;
     
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
     
     private Customer(){}
@@ -47,24 +39,7 @@ public class Customer implements DomainObject{
 	this.billingAddress.setCity(city);
 	this.billingAddress.setProvince(Province.valueOf(province));
     }
-    
-    @Override
-    public Integer getId() {
-	return id;
-    }
-    @Override
-    public void setId(Integer id) {
-	this.id = id;	
-    }
-    
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
+      
     public String getFirstName() {
         return firstName;
     }
