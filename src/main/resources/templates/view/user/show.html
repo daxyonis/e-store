@@ -1,0 +1,77 @@
+<html lang="en"	
+	xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+	<title>Customer Details</title>		
+</head>
+<body>
+
+	<div class="container" layout:fragment="content">
+		
+		<div class="page-header">
+			<h1>Customer Detail</h1>
+			<p class="lead" th:text=" ${user.customer.firstName} + ' ' + ${user.customer.lastName}">fname lname</p>
+		</div>
+		<form class="form-horizontal">
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">ID</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.id} ">fname</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Username</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.username} ">fname</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">First Name</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.firstName} ">fname</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Last Name</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.lastName}">lname</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.email}">asdf@aasdf.asd</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Phone number</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.phoneNb}">(514)303-3003</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Adress Line 1</label>
+			 <div class="col-sm-10">
+      		 <p class="form-control-static" th:text="${user.customer.billingAddress.addressLine1}">1234 apt 10</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Adress Line 2</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.billingAddress.addressLine2}">rue Bibaud</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">City</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.billingAddress.city}">Quebec</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Province</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.billingAddress.province.getName()}">Quebec</p></div>
+		</div>
+		<div class="form-group">
+			 <label class="col-sm-2 control-label">Postal Code</label>
+			<div class="col-sm-10">
+      		<p class="form-control-static" th:text="${user.customer.billingAddress.postalCode}">H3H 4V7</p></div>
+		</div>
+		
+		</form>
+	</div>
+	
+</body>
+</html>

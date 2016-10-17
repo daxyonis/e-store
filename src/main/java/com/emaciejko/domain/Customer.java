@@ -22,7 +22,7 @@ public class Customer extends AbstractDomain{
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
     
-    private Customer(){}
+    public Customer(){}
     
     public Customer(String firstName){
 	this.firstName = firstName;
