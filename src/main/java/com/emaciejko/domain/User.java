@@ -22,6 +22,13 @@ public class User extends AbstractDomain{
     
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
+    
+    public User(){};
+    
+    public User(String username, String password){
+	this.username = username;
+	this.password = password;
+    }
    
 
     public String getUsername() {
