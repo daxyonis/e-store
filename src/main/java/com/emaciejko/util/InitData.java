@@ -9,7 +9,12 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.emaciejko.domain.Cart;
+import com.emaciejko.domain.CartDetail;
 import com.emaciejko.domain.Customer;
+import com.emaciejko.domain.Order;
+import com.emaciejko.domain.OrderDetail;
+import com.emaciejko.domain.OrderStatus;
 import com.emaciejko.domain.Product;
 import com.emaciejko.domain.Product.CategoryEnum;
 import com.emaciejko.domain.User;
@@ -42,7 +47,8 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
 	initProducts();
 	initUsersAndCustomers();
-	
+	initCarts();
+        initOrderHistory();	
     }
 
     private void initUsersAndCustomers() {
@@ -68,6 +74,38 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
 	prodService.save(new Product("Dark Lord", CategoryEnum.BLACK_TEA, BigDecimal.valueOf(16.0), 25));
 	prodService.save(new Product("White Dragon", CategoryEnum.WHITE_TEA, BigDecimal.valueOf(17.0), 22));
 	prodService.save(new Product("Matcha", CategoryEnum.GREEN_TEA, BigDecimal.valueOf(20.0), 20));	
+    }
+    
+    private void initOrderHistory() {
+        List<User> users = userService.findAll();
+        List<Product> products = (List<Product>) prodService.findAll();
+
+        users.forEach(user ->{
+            Order order = new Order();
+            order.setCustomer(user.getCustomer());
+            order.setStatus(OrderStatus.SHIPPED);
+
+            products.forEach(product -> {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(1);
+                order.addToOrderDetails(orderDetail);
+            });
+        });
+    }
+    
+    private void initCarts() {
+        List<User> users = (List<User>) userService.findAll();
+        List<Product> products = (List<Product>) prodService.findAll();
+
+        users.forEach(user -> {
+            user.setCart(new Cart());
+            CartDetail cartDetail = new CartDetail();
+            cartDetail.setProduct(products.get(0));
+            cartDetail.setQuantity(2);
+            user.getCart().addCartDetail(cartDetail);
+            userService.save(user);
+        });
     }
 
 }
