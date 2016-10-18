@@ -42,6 +42,7 @@ public class CustomerService {
 	return customerDAO.save(customer);
     }
     
+    @Transactional
     public void delete(Integer id){
 	customerDAO.delete(id);
     }

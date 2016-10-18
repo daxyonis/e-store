@@ -1,5 +1,8 @@
 package com.emaciejko.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -22,6 +25,13 @@ public class User extends AbstractDomain{
     
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
+    
+    @ManyToMany
+    @JoinTable
+    // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
+    //     inverseJoinColumns = @joinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
+
     
     public User(){};
     
@@ -79,6 +89,28 @@ public class User extends AbstractDomain{
         this.cart = cart;
     }
     
-    
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(Role role){
+        if(!this.roles.contains(role)){
+            this.roles.add(role);
+        }
+
+        if(!role.getUsers().contains(this)){
+            role.getUsers().add(this);
+        }
+    }
+
+    public void removeRole(Role role){
+        this.roles.remove(role);
+        role.getUsers().remove(this);
+    }
+
 
 }

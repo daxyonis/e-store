@@ -30,7 +30,7 @@ public class Product extends AbstractDomain {
     @Transient
     private MultipartFile image;    
     
-    private Product(){}
+    public Product(){}
     
     public Product(String name){
 	this.name = name;	

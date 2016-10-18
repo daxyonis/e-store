@@ -1,4 +1,4 @@
-package com.emaciejko.util;
+package com.emaciejko.bootstrap;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,8 +17,10 @@ import com.emaciejko.domain.OrderDetail;
 import com.emaciejko.domain.OrderStatus;
 import com.emaciejko.domain.Product;
 import com.emaciejko.domain.Product.CategoryEnum;
+import com.emaciejko.domain.Role;
 import com.emaciejko.domain.User;
 import com.emaciejko.service.ProductService;
+import com.emaciejko.service.RoleService;
 import com.emaciejko.service.UserService;
 
 /**
@@ -30,7 +32,8 @@ import com.emaciejko.service.UserService;
 public class InitData implements ApplicationListener<ContextRefreshedEvent> {
     
     private ProductService prodService;    
-    private UserService userService;    
+    private UserService userService;  
+    private RoleService roleService;
     
     @Autowired
     public void setProductService(ProductService productService){
@@ -40,7 +43,12 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     public void setUserService(UserService userService){
 	this.userService = userService;
-    }            
+    }
+    
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
     
 
     @Override
@@ -48,7 +56,9 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
 	initProducts();
 	initUsersAndCustomers();
 	initCarts();
-        initOrderHistory();	
+        initOrderHistory();
+        initRoles();
+        assignUsersToDefaultRole();
     }
 
     private void initUsersAndCustomers() {
@@ -106,6 +116,26 @@ public class InitData implements ApplicationListener<ContextRefreshedEvent> {
             user.getCart().addCartDetail(cartDetail);
             userService.save(user);
         });
+    }
+    
+    private void assignUsersToDefaultRole() {
+        List<Role> roles = (List<Role>) roleService.findAll();
+        List<User> users = (List<User>) userService.findAll();
+
+        roles.forEach(role ->{
+            if(role.getRole().equalsIgnoreCase("CUSTOMER")){
+                users.forEach(user -> {
+                    user.addRole(role);
+                    userService.save(user);
+                });
+            }
+        });
+    }
+
+    private void initRoles() {
+        Role role = new Role();
+        role.setRole("CUSTOMER");
+        roleService.save(role);
     }
 
 }

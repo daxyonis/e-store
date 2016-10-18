@@ -2,6 +2,8 @@ package com.emaciejko.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +28,12 @@ public class OrderService  {
 	return orderDAO.findOne(id);
     }
     
+    @Transactional
     public Order save(Order order){
 	return orderDAO.save(order);
     }
     
+    @Transactional
     public void delete(Integer id){
 	orderDAO.delete(id);
     }
